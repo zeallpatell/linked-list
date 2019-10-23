@@ -20,9 +20,10 @@ public:
     LinkedList();
     void insert(int data);
     void insertPos(int data, int pos);
-    void deletePos(int pos);
-    void print();
+    void deletePos(int index);
+    int getElementAt(int index);
     int length();
+    void print();
 };
 
 LinkedList::LinkedList() {
@@ -57,17 +58,27 @@ void LinkedList::insertPos(int data, int pos) {
 }
 
 //deletes a node at a given pos
-void LinkedList::deletePos(int pos) {
+void LinkedList::deletePos(int index) {
     Node *prev = new Node;
     Node *curr = new Node;
     Node *temp = new Node;
     curr = head;
-    for (int i = 0; i < pos; ++i) {
+    for (int i = 0; i < index; ++i) {
         prev = curr;
         curr = curr->next;
     }
     temp = curr;
     prev->next = curr->next;
+}
+
+//returns the element at the supplied index
+int LinkedList::getElementAt(int index) {
+    Node *curr = new Node;
+    curr = head;
+    for (int i = 0; i < index; ++i) {
+        curr = curr->next;
+    }
+    return curr->data;
 }
 
 //returns the length of a linked list
@@ -104,6 +115,7 @@ int main() {
     list.print();
     list.deletePos(4); //deletes the node at index 4
     list.print();
+    std::cout << list.getElementAt(4) << std::endl;
     return 0;
 }
 
