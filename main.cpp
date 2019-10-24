@@ -22,6 +22,8 @@ public:
     void insertPos(int data, int pos);
     void deletePos(int index);
     int getElementAt(int index);
+    int *findOccurrence(int data);
+    int findMiddle();
     int length();
     void print();
 };
@@ -71,11 +73,31 @@ void LinkedList::deletePos(int index) {
     prev->next = curr->next;
 }
 
-//returns the element at the supplied index
+//returns the element at the given index
 int LinkedList::getElementAt(int index) {
     Node *curr = new Node;
     curr = head;
     for (int i = 0; i < index; ++i) {
+        curr = curr->next;
+    }
+    return curr->data;
+}
+
+int *LinkedList::findOccurrence(int data) {
+    int p[length()];
+    Node *curr = new Node;
+    curr = head;
+    for (int i = 0; i < length(); ++i) {
+        if (curr->data == data) {
+            p[i] = i;
+        }
+    }
+
+}
+
+int LinkedList::findMiddle() {
+    Node *curr = head;
+    for (int i = 0; i < length() / 2; ++i) {
         curr = curr->next;
     }
     return curr->data;
@@ -109,13 +131,9 @@ int main() {
     list.insert(3);
     list.insert(5);
     list.insert(6);
+    list.insert(7);
     list.print(); //prints the list
-    std::cout << "Length of the list: " << list.length() << std::endl;
-    list.insertPos(4, 3); //inserts a node with data = 4 at index 3
-    list.print();
-    list.deletePos(4); //deletes the node at index 4
-    list.print();
-    std::cout << list.getElementAt(4) << std::endl;
+    std::cout << list.findMiddle() << std::endl;
     return 0;
 }
 
