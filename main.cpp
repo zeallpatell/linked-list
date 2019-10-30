@@ -92,9 +92,9 @@ int *LinkedList::findOccurrence(int data) {
             p[i] = i;
         }
     }
-
 }
 
+//finds and returns the middle of the linked list. If the list has even number of nodes then it returns the second of the two middle nodes
 int LinkedList::findMiddle() {
     Node *curr = head;
     for (int i = 0; i < length() / 2; ++i) {
@@ -126,14 +126,24 @@ void LinkedList::print() {
 
 int main() {
     LinkedList list; //creates a list
-    list.insert(1); //inserts in the end of list
-    list.insert(2);
-    list.insert(3);
-    list.insert(5);
-    list.insert(6);
-    list.insert(7);
+
+    for (int i = 0; i < 5; ++i) {
+        list.insert(i);
+    } //inserts 0-4 in the linked list
     list.print(); //prints the list
-    std::cout << list.findMiddle() << std::endl;
+
+    list.insertPos(9,2); //inserts 9 at index 2
+    list.print();
+
+    list.deletePos(3); //deletes element at index 3
+    list.print();
+
+    std::cout << "Element at index 4: " << list.getElementAt(4) << std::endl; //returns element at index 4
+
+    std::cout << "Element at the middle of list: " << list.findMiddle() << std::endl; //returns element at middle of list
+
+    std::cout << "Length of list: " << list.length() << std::endl; //returns length of list
     return 0;
 }
+
 
